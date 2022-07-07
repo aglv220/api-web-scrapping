@@ -1,9 +1,19 @@
 <?php
+require_once "controller/token-controller.php";
+
 class CanvasData{
     public function get_data_canvas(){
-        $get_file = file_get_contents("includes/assets/data-canvas.json");
-        $decode_file = json_decode($get_file,true);
-        print_r($decode_file);
+        $token = new Token();
+        $return = "ERROR";
+        $token_enviado = $_POST["token"];
+        $token_bd = $token->gettoken();
+        if(strcmp($token_enviado,$token_bd)==0){
+            $get_file = file_get_contents("includes/assets/data-canvas.json");
+            $decode_file = json_decode($get_file,true);
+            $return = $decode_file;
+        }
+        print_r($return);
+        //print_r($decode_file);
     }
 }
 ?>
