@@ -4,17 +4,20 @@ class Token extends SystemFuncion
 {
         protected function gettoken()
         {
-                $user = $this->decript_data("=oAYKAGYw0DVhc1NDViR7YVJWxjK");
-                $password = $this->decript_data("=oAYKAGYgVDS1YFOM1lV94UJjwiK");
-                $url_token = 'http://empiresoftgroup.online/academico/ApiControlador/obtener_token?usuario=' . $user . '&password=' . $password;
-                //LOCALHOST API
-                //$url_token = 'http://localhost/academico/ApiControlador/obtener_token?usuario=' . $user . '&password=' . $password;
+                $user = "=oAYKAGYw0DVhc1NDViR7YVJWxjK";
+                $password = "=oAYKAGYgVDS1YFOM1lV94UJjwiK";
+                $encripted_login = 1;
+                $secure_token = 1;
+                $url_token = 'http://empiresoftgroup.online/academico/ApiControlador/obtener_token?usuario=' . $user . '&password=' . $password . "&encriptedlogin=" . $encripted_login . "&securetoken=" . $secure_token;
+                //$url_token = 'http://localhost/academico/ApiControlador/obtener_token?usuario=' . $user . '&password=' . $password . "&encriptedlogin=" . $encripted_login . "&securetoken=" . $secure_token;
                 $get_file = file_get_contents($url_token);
                 $decode_file = json_decode($get_file);
-                if ($decode_file == "ERROR") {
+                $decode_file_val = $decode_file->token;
+                $decript_file = $this->decript_data($decode_file_val);
+                if ($decript_file == "ERROR") {
                         return false;
                 } else {
-                        return $decode_file;
+                        return $decript_file;
                 }
         }
 }
