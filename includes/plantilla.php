@@ -1,3 +1,2 @@
 <?php
-include("controller/canvas-controller.php");
-?>
+include("views/apidata-view.php");

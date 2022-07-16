@@ -1,10 +1,11 @@
 <?php
-class Token
+require_once "functions/system-function.php";
+class Token extends SystemFuncion
 {
-        public function gettoken()
+        protected function gettoken()
         {
-                $user = "utp_canvas";
-                $password = "Theclown10";
+                $user = $this->decript_data("=oAYKAGYw0DVhc1NDViR7YVJWxjK");
+                $password = $this->decript_data("=oAYKAGYgVDS1YFOM1lV94UJjwiK");
                 $url_token = 'http://empiresoftgroup.online/academico/ApiControlador/obtener_token?usuario=' . $user . '&password=' . $password;
                 //LOCALHOST API
                 //$url_token = 'http://localhost/academico/ApiControlador/obtener_token?usuario=' . $user . '&password=' . $password;
